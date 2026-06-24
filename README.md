@@ -138,7 +138,7 @@ Choose a managed cloud database provider with a free or low-cost tier:
 
 Once you register:
 1. Create a MySQL database (e.g. named `codevector_db`).
-2. Download or enable SSL certificate support (if required by your cloud provider). If the cloud database enforces SSL, configure `DB_SSL_CA` pointing to the CA file.
+2. Download or enable SSL certificate support (required by Aiven). You can configure `DB_SSL_CA` by either pointing it to the local path of your downloaded `ca.pem` file, or by pasting the raw text content of the `ca.pem` certificate directly into the environment variable. Our database connector is designed to handle both formats.
 3. Import your schema:
    ```bash
    mysql -h YOUR_CLOUD_DB_HOST -u YOUR_CLOUD_DB_USER -p -P YOUR_CLOUD_DB_PORT YOUR_CLOUD_DB_NAME < schema.sql

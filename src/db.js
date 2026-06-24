@@ -7,7 +7,11 @@ const sslConfig = {
 };
 
 if (process.env.DB_SSL_CA) {
-  sslConfig.ca = fs.readFileSync(process.env.DB_SSL_CA);
+  if (process.env.DB_SSL_CA.trim().startsWith('-----BEGIN CERTIFICATE-----')) {
+    sslConfig.ca = process.env.DB_SSL_CA;
+  } else {
+    sslConfig.ca = fs.readFileSync(process.env.DB_SSL_CA);
+  }
 }
 
 const pool = mysql.createPool({
